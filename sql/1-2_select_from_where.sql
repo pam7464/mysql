@@ -79,6 +79,15 @@ HAVING COUNT(custid) >=3;
    FROM book
    ORDER BY publisher ASC,bookname DESC;
    
-   
+   /*
+   orders테이블에서 custid가 3이하인 고객중, 2회이상 거래된 고객을 대상으로 
+   custid별 custid,saleprice의 합계,판매개수를 custid의 내림차순으로 정렬하여 출력하시오
+   */
+  SELECT custid,SUM(saleprice) AS '합계',COUNT(*) AS '판매개수'
+  FROM orders
+  WHERE custid<=3
+  GROUP BY custid
+  HAVING COUNT(*)>=2
+  ORDER BY custid DESC;
    
    
